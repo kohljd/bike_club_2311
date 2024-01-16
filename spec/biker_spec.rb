@@ -18,6 +18,11 @@ RSPec.describe Biker do
         expect(@biker.acceptable_terrain).to eq([])
     end
 
+    it 'learns terrains' do
+        @biker.learn_terrain!(:gravel)
+        expect(@biker.acceptable_terrain).to eq([:gravel])
+    end
+
     it 'starts with no rides' do
         expect(@biker.rides).to eq({})
     end
