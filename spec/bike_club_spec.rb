@@ -84,5 +84,15 @@ RSpec.describe BikeClub do
             allow(Time).to receive(:now).and_return(Time.new(2024, 1, 16, 12, 17))
             expect(@bike_club.record_group_ride(@ride2)).to eq({start_time: Time.new(2024, 1, 16, 12, 17), ride: @ride2, members: [@biker, @biker2]})
         end
+
+        it 'lists group rides' do
+            expect(@bike_club.group_rides).to eq([])
+
+            group_ride1 = @bike_club.record_group_ride(@ride2)
+            expect(@bike_club.group_rides).to eq([group_ride1])
+            
+            group_ride2 = @bike_club.record_group_ride(@ride2)
+            expect(@bike_club.group_rides).to eq([group_ride1, group_ride2])
+        end
     end
 end

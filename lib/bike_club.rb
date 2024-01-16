@@ -1,10 +1,12 @@
 class BikeClub
     attr_reader :name,
-                :bikers
+                :bikers,
+                :group_rides
 
     def initialize(name)
         @name = name
         @bikers = []
+        @group_rides = []
     end
 
     def add_biker(biker)
@@ -32,6 +34,7 @@ class BikeClub
         group_ride[:members] = eligible_bikers(ride)
         group_ride[:ride] = ride
         group_ride[:start_time] = Time.now
+        @group_rides << group_ride
         group_ride
     end
 end
