@@ -23,4 +23,27 @@ RSpec.describe BikeClub do
 
         expect(@bike_club.bikers).to eq([biker])
     end
+
+    describe 'bikers list' do
+        before(:each) do
+            @biker = Biker.new("Kenny", 30)
+            @biker2 = Biker.new("Athena", 15)
+            @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
+            @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
+            @biker.learn_terrain!(:gravel)
+            @biker.learn_terrain!(:hills)
+            @biker2.learn_terrain!(:gravel)
+            @biker2.learn_terrain!(:hills)
+
+            @biker.log_ride(@ride1, 92.5)
+            @biker.log_ride(@ride1, 80.2)
+            @biker.log_ride(@ride2, 60.9)
+            @biker2.log_ride(@ride2, 95.0)
+            @biker2.log_ride(@ride2, 65.0)
+        end
+
+        it 'states rider with most rides' do
+            expect(@bike_club.most_rides).to eq(@biker)
+        end
+    end
 end
