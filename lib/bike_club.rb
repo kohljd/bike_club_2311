@@ -24,6 +24,6 @@ class BikeClub
     end
 
     def eligible_bikers(ride)
-        
+        @bikers.select {|biker| biker.eligible?(ride)}
     end
 end
