@@ -2,7 +2,7 @@ require './spec/spec_helper'
 
 RSpec.describe BikeClub do
     before(:each) do
-        @bike_club = ("Bike Now")
+        @bike_club = BikeClub.new("Bike Now")
     end
 
     it 'exists' do
