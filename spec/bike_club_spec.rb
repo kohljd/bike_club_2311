@@ -40,6 +40,9 @@ RSpec.describe BikeClub do
             @biker.log_ride(@ride2, 60.9)
             @biker2.log_ride(@ride2, 95.0)
             @biker2.log_ride(@ride2, 65.0)
+
+            @bike_club.add_biker(@biker)
+            @bike_club.add_biker(@biker2)
         end
 
         it 'states rider with most rides' do
