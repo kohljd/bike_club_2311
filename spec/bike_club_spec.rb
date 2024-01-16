@@ -58,4 +58,30 @@ RSpec.describe BikeClub do
             expect(@bike_club.eligible_bikers(@ride2)).to eq([@biker, @biker2])
         end
     end
+
+    describe 'group rides' do
+        before(:each) do
+            @biker = Biker.new("Kenny", 30)
+            @biker2 = Biker.new("Athena", 15)
+            @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
+            @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
+            @biker.learn_terrain!(:gravel)
+            @biker.learn_terrain!(:hills)
+            @biker2.learn_terrain!(:gravel)
+            @biker2.learn_terrain!(:hills)
+
+            @biker.log_ride(@ride1, 92.5)
+            @biker.log_ride(@ride1, 80.2)
+            @biker.log_ride(@ride2, 60.9)
+            @biker2.log_ride(@ride2, 95.0)
+            @biker2.log_ride(@ride2, 65.0)
+
+            @bike_club.add_biker(@biker)
+            @bike_club.add_biker(@biker2)
+        end
+
+        it 'can record group ride' do
+            expect(@bike_club.record_group_ride(@ride2)).to eq({start_time: Time.now, ride: @ride2, members: [@biker, @biker2]})
+        end
+    end
 end
