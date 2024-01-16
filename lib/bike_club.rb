@@ -22,4 +22,8 @@ class BikeClub
         ride_personal_records = ride_bikers.to_h {|biker| [biker, biker.personal_record(ride)]}
         ride_personal_records.min_by {|biker, record| record}.first
     end
+
+    def eligible_bikers(ride)
+        
+    end
 end

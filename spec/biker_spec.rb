@@ -80,4 +80,27 @@ RSpec.describe Biker do
             end
         end
     end
+
+    #test for added helper method 'eligible?'
+    describe 'eligible to ride' do
+        it 'can ride if meet distance req' do
+            biker2 = Biker.new("Athena", 15)
+            biker2.learn_terrain!(:gravel)
+            biker2.learn_terrain!(:hills)
+            ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
+            ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
+
+            expect(biker2.eligible?(ride1)).to be false
+            expect(biker2.eligible?(ride2)).to be true
+        end
+
+        it 'can ride if has terrain req' do
+            biker2 = Biker.new("Athena", 15)
+            ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
+            expect(biker2.eligible?(ride2)).to be false
+
+            biker2.learn_terrain!(:gravel)
+            expect(biker2.eligible?(ride2)).to be true
+        end
+    end
 end
