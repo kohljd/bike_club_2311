@@ -1,6 +1,6 @@
 require './spec/spec_helper'
 
-RSPec.describe Biker do
+RSpec.describe Biker do
     before(:each) do
         @biker = Biker.new("Kenny", 30)
     end
