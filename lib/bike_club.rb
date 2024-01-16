@@ -15,4 +15,11 @@ class BikeClub
         bikers_ride_counts = @bikers.to_h {|biker| [biker, biker.ride_log.values.flatten.size]}
         bikers_ride_counts.max_by {|biker, ride_count| ride_count}.first
     end
+
+    def best_time(ride)
+        # p ride_list = @bikers.flat_map {|biker| biker.ride_log.keys}.uniq
+        ride_bikers = @bikers.select {|biker| biker.ride_log.keys.include?(ride)}
+        ride_personal_records = ride_bikers.to_h {|biker| [biker, biker.personal_record(ride)]}
+        ride_personal_records.min_by {|biker, record| record}.first
+    end
 end
