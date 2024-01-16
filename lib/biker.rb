@@ -21,4 +21,9 @@ class Biker
             @ride_log[ride] << time
         end
     end
+
+    def personal_record(ride)
+        return false unless @ride_log.keys.include?(ride)
+        @ride_log[ride].min
+    end
 end
