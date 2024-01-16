@@ -26,4 +26,12 @@ class BikeClub
     def eligible_bikers(ride)
         @bikers.select {|biker| biker.eligible?(ride)}
     end
+
+    def record_group_ride(ride)
+        group_ride = Hash.new
+        group_ride[:members] = eligible_bikers(ride)
+        group_ride[:ride] = ride
+        group_ride[:start_time] = Time.now
+        group_ride
+    end
 end
