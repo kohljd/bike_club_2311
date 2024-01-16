@@ -24,10 +24,10 @@ RSpec.describe Biker do
     end
 
     it 'starts with no rides' do
-        expect(@biker.rides).to eq({})
+        expect(@biker.ride_log).to eq({})
     end
 
-    descibe 'ride log' do
+    describe 'ride log' do
         before(:each) do
             @ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
             @ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
@@ -38,8 +38,9 @@ RSpec.describe Biker do
         it 'can log ride' do
             @biker.learn_terrain!(:gravel)
             @biker.log_ride(@ride2, 60.9)
+            @biker.log_ride(@ride2, 70.1)
     
-            expect(@biker.rides).to eq({@ride2 => [60.9]})
+            expect(@biker.ride_log).to eq({@ride2 => [60.9, 70.1]})
         end
         
         it 'can only ride if learned terrain' do
@@ -67,7 +68,7 @@ RSpec.describe Biker do
                 @biker.log_ride(@ride2, 92.5)
                 @biker.log_ride(@ride2, 60.9)
 
-                expect(@biker.personal_recode(@ride2)).to eq(60.9)
+                expect(@biker.personal_record(@ride2)).to eq(60.9)
             end
 
             it 'returns false if ride not logged' do
@@ -75,7 +76,7 @@ RSpec.describe Biker do
                 @biker.log_ride(@ride2, 92.5)
                 @biker.log_ride(@ride2, 60.9)
 
-                expect(@biker.personal_recode(@ride1)).to be false
+                expect(@biker.personal_record(@ride1)).to be false
             end
         end
     end
