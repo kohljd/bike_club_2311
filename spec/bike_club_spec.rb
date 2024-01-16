@@ -85,6 +85,14 @@ RSpec.describe BikeClub do
             expect(@bike_club.record_group_ride(@ride2)).to eq({start_time: Time.new(2024, 1, 16, 12, 17), ride: @ride2, members: [@biker, @biker2]})
         end
 
+        it 'calculates biker ride times' do
+            #helper method for ride time?
+            allow(Time).to receive(:now).and_return(Time.new(2024, 1, 16, 12, 17))
+            @bike_club.record_group_ride(@ride2)
+            #test for calculating times
+            #make separate test for adding to ride log
+        end
+
         it 'lists group rides' do
             expect(@bike_club.group_rides).to eq([])
 

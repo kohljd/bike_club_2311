@@ -34,7 +34,24 @@ class BikeClub
         group_ride[:members] = eligible_bikers(ride)
         group_ride[:ride] = ride
         group_ride[:start_time] = Time.now
+        
+        #add to group rides list
         @group_rides << group_ride
+
+        #gather end time and add to ride log
+        group_ride[:members].each {|member| finish_group_ride(ride, member)}
+
+        #return group_ride hash
         group_ride
     end
+    
+    def finish_group_ride(ride, biker)
+        finish_time = Time.now
+        time = 
+        biker.log_ride(ride, time)
+    end
+
+    #finish_group_ride(biker)
+    #biker class -> log_ride(ride, time)
+        # time = biker_end_time - group_ride[:start_time]
 end
