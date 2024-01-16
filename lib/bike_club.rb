@@ -3,5 +3,6 @@ class BikeClub
 
     def initialize(name)
         @name = name
+        @bikers = []
     end
 end
