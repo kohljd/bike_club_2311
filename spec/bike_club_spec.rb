@@ -48,5 +48,9 @@ RSpec.describe BikeClub do
         it 'states rider with most rides' do
             expect(@bike_club.most_rides).to eq(@biker)
         end
+
+        it 'returns biker with best ride time' do
+            expect(@bike_club.best_time(@ride2)).to eq(@biker)
+        end
     end
 end
