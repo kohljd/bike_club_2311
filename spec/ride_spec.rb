@@ -10,7 +10,7 @@ RSpec.describe Ride do
     end
 
     it 'has attributes' do
-        expect(@ride1.name).to eq()
+        expect(@ride1.name).to eq("Walnut Creek Trail")
         expect(@ride1.distance).to eq(10.7)
         expect(@ride1.terrain).to eq(:hills)
     end
