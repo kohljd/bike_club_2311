@@ -81,7 +81,8 @@ RSpec.describe BikeClub do
         end
 
         it 'can record group ride' do
-            expect(@bike_club.record_group_ride(@ride2)).to eq({start_time: Time.now, ride: @ride2, members: [@biker, @biker2]})
+            allow(Time).to receive(:now).and_return(Time.new(2024, 1, 16, 12, 17))
+            expect(@bike_club.record_group_ride(@ride2)).to eq({start_time: Time.new(2024, 1, 16, 12, 17), ride: @ride2, members: [@biker, @biker2]})
         end
     end
 end
