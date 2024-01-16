@@ -51,11 +51,32 @@ RSpec.describe Biker do
         end
 
         it 'can only ride if max distance > ride total distance' do
+            @biker2.learn_terrain!(:gravel)
+            @biker2.learn_terrain!(:hills)
+
             @biker2.log_ride(@ride1, 95.0)
             expect(@biker2.ride_log).to eq({})
 
             @biker2.log_ride(@ride2, 65.0)
             expect(@biker2.ride_log).to eq({@ride2 =>[65.0]})
+        end
+
+        describe 'personal record' do 
+            it 'returns personal record for a ride' do
+                @biker.learn_terrain!(:gravel)
+                @biker.log_ride(@ride2, 92.5)
+                @biker.log_ride(@ride2, 60.9)
+
+                expect(@biker.personal_recode(@ride2)).to eq(60.9)
+            end
+
+            it 'returns false if ride not logged' do
+                @biker.learn_terrain!(:gravel)
+                @biker.log_ride(@ride2, 92.5)
+                @biker.log_ride(@ride2, 60.9)
+
+                expect(@biker.personal_recode(@ride1)).to be false
+            end
         end
     end
 end
